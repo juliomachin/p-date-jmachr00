@@ -340,4 +340,49 @@ public class Date {
 	}
 	
 	
+	//Apartado day of the Week
+	
+	private String nameOfDay(int day) {
+		String nameDay;
+		switch (day) {
+		case 1: 
+			nameDay = "Lunes";
+			break;
+		case 2: 
+			nameDay = "Martes";
+			break;
+		case 3: 
+			nameDay = "Miercoles";
+			break;
+		case 4: 
+			nameDay = "Jueves";
+			break;
+		case 5: 
+			nameDay = "Viernes";
+			break;
+		case 6: 
+			nameDay = "Sabado";
+			break;
+		case 7: 
+			nameDay = "Domingo";
+			break;
+		default:
+			nameDay = "No es un dia";
+		}
+		return nameDay;
+	}
+	
+	public String dayOfTheWeek(int unoEnero){
+		int dayNumber;
+		
+		dayNumber = (daysPast()% 7 + firstOfJanuary)% 7;
+		
+		return nameOfDay(dayNumber);
+	}
+	
+	public String toString(){
+		return this.day + "/" + this.month + "/" + this.year;
+	}
+	
+	
 }
