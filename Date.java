@@ -13,21 +13,21 @@ public class Date {
 	}
 	
 	public Date(int dya, int month, int year) throws Date_Exception{
-		StringBuffer mensaje = new StringBuffer();
+		StringBuffer message = new StringBuffer();
 		
 		if(day <= 0){
-			mensaje.append("No se permiten dias negativos" +day+ "\n");
+			message.append("No se permiten dias negativos" +day+ "\n");
 		}
 		if(month <=0){
-			mensaje.append("No se permiten meses negativos" +month+ "\n");
+			message.append("No se permiten meses negativos" +month+ "\n");
 		}else if(month > 12){
-			mensaje.append("No se permiten meses mayores que 12" +month+ "\n");
+			message.append("No se permiten meses mayores que 12" +month+ "\n");
 		}
 		if (year < 0){
-			mensaje.append("No se permiten anyos negativos" +year+ "\n");
+			message.append("No se permiten anyos negativos" +year+ "\n");
 		}
-		if (mensaje.length() != 0){
-			throw new Date_Exception(mensaje.toString());
+		if (message.length() != 0){
+			throw new Date_Exception(message.toString());
 		}else{
 			this.day = day;
 			this.month = month;
@@ -84,6 +84,36 @@ public class Date {
 		}
 	}
 
+	
+	//Crear clase tomorrow
+	
+	public Date tomorrow(){
+		Date tomorrow = null;
+		int d, m, y;
+				
+		d = this.day;
+		m = this.month;
+		y = this.year;
+		
+		d++;
+		if ( d > this.daysOfMonth(month) ) {
+			d = 1;
+			m++;
+			if ( m > 12 ) {
+				m = 1;
+				y++;
+			}	
+		}
+		
+		try{
+			tomorrow = new Date(d, m, y);
+		} catch (DateException ){
+			System.out.println("ERROR");
+		}
+
+		return tomorrow;
+	}
+	
 	
 	// Ejercicio isSame...
 	
@@ -206,7 +236,7 @@ public class Date {
 	
 	public String nameSeasonMonth(){
 		String name = null;
-		switch(month){
+		switch(this.month){
 		case 1:
 		case 2:
 		case 3:
@@ -238,6 +268,76 @@ public class Date {
 	public String monthsLeft(){
 		Date aux = new Date(this);
 		StringBuffer monthsLeft = new StringBuffer();
-	}
 		
+		try{
+			int i = 0;
+			for(i = month; i <= 12; i++){
+				aux.setMonth(i);
+				monthsLeft.append(aux.nameOfMonth + " ");
+			}
+		}catch (Exception){
+			System.out.println("ERROR");
+			
+		}
+		return monthsLeft.toString;
+	}
+	
+	//Apartado days left of the month
+	
+	public String daysLeftOfMonth(){
+		Date aux = tomorrow();
+		StringBuffer daysLeft = new StringBuffer();
+		
+		try{
+			for (int i = aux.getDay(); isDayRight(i); i++) {
+				aux.setDay(i);
+				daysLeft.append(aux.toString() + " ");
+			}
+		} catch (DateException ){
+			System.err.println("Date.getDaysLeftOfMonth: " + e.getMessage());
+		}
+		return daysLeft.toString();
+		
+	}
+	
+	//Apartado months with the same number of days as the month of this date.
+	
+	public String monthsSameDays(){
+		Date aux = new Date(this);
+		StringBuffer monthsSameDays = new StringBuffer();
+
+		try{
+			for ( int i = 1; i <= 12; i++) {
+				aux.setMonth(i);
+				if ( aux.daysOfMonth() == this.daysOfMonth() ) {
+					months.append(aux.getMonthName() + " ");
+				}
+			}
+		} catch (DateException){
+			System.out.println("ERROR");
+		}
+		return monthsSameDays.toString();
+	}
+
+	
+	//Apartado  number of days since the first day of the year
+	
+	public int dayPast(){
+		int result;
+		result = 0;
+		
+		try{
+			Date aux = new Date(1,1,this.year);
+		
+			for ( int i = 1; i < this.month; i++ ) {
+				result += aux.daysOfMonth();
+				aux.setMonth(i + 1);
+			}
+			System.out.println("ERROR");
+		}
+		
+		return result + this.day - 1;
+	}
+	
+	
 }
