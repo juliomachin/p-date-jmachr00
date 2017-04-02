@@ -6,6 +6,7 @@ public class Date {
 	private int year;
 	
 	//Crear Constructor
+	
 	public Date(){
 		this.day = 0;
 		this.month = 0;
@@ -35,12 +36,16 @@ public class Date {
 		}
 	}
 	
+	
 	public Date(Date another){
 		this.day = another.getDay();
 		this.month = another.getMonth();
 		this.year = another.getYear();
 	}
+	
+	
 
+	
 	
 	//Getter and Setter
 	
@@ -58,6 +63,7 @@ public class Date {
 		}
 	}
 	
+	
 	public int getMonth(){
 		return month;
 	}
@@ -71,10 +77,12 @@ public class Date {
 			this.month = month;
 		}
 	}
+	
 
 	public int getYear(int year) throws Date_Exception{
 		return year;
 	}
+	
 	
 	public void setYear(int year) throws Date_Exception{
 		if(year < 0){
@@ -84,6 +92,8 @@ public class Date {
 		}
 	}
 
+	
+	
 	
 	//Crear clase tomorrow
 	
@@ -115,6 +125,8 @@ public class Date {
 	}
 	
 	
+	
+	
 	// Ejercicio isSame...
 	
 	//Apartado isSameDay
@@ -126,6 +138,8 @@ public class Date {
 			return false;
 		}
 	}
+
+	
 	
 	//Apartado isSameMonth
 	
@@ -137,6 +151,9 @@ public class Date {
 		}
 	}
 	
+	
+	
+	
 	//Apartado isSameYear
 	
 	public boolean isSameYear(Date other){
@@ -146,6 +163,9 @@ public class Date {
 			return false;
 		}
 	}
+	
+	
+	
 	
 	//Apartado nameOfMonth
 	
@@ -194,15 +214,22 @@ public class Date {
 		}
 	}
 	
+	
+	
+	
 	//Apartado checks dayOfMonth
+	
 	private boolean isDayRight(int day){
 		return ((day > 0) && (day <= this.dayOfMonth(this.month)));
 	}
+	
 	
 	public int dayOfMonth(){
 		return this.dayOfMonth (this.month);
 	}
 		
+	
+	
 	private int dayOfMonth(int month){
 		int n = 0;
 		switch(month){
@@ -230,6 +257,8 @@ public class Date {
 		}
 		return m;	
 	}
+	
+	
 	
 	
 	//Apartado seasonOfMonth
@@ -263,6 +292,9 @@ public class Date {
 		}
 	}
 	
+	
+	
+	
 	//Apartado monthsLeft
 	
 	public String monthsLeft(){
@@ -282,6 +314,9 @@ public class Date {
 		return monthsLeft.toString;
 	}
 	
+	
+	
+	
 	//Apartado days left of the month
 	
 	public String daysLeftOfMonth(){
@@ -299,6 +334,9 @@ public class Date {
 		return daysLeft.toString();
 		
 	}
+	
+	
+	
 	
 	//Apartado months with the same number of days as the month of this date.
 	
@@ -318,6 +356,8 @@ public class Date {
 		}
 		return monthsSameDays.toString();
 	}
+
+	
 
 	
 	//Apartado  number of days since the first day of the year
@@ -340,8 +380,9 @@ public class Date {
 	}
 	
 	
-	//Apartado day of the Week
 	
+	//Apartado day of the Week
+	ç
 	private String nameOfDay(int day) {
 		String nameDay;
 		switch (day) {
@@ -372,6 +413,7 @@ public class Date {
 		return nameDay;
 	}
 	
+	
 	public String dayOfTheWeek(int unoEnero){
 		int dayNumber;
 		
@@ -380,9 +422,31 @@ public class Date {
 		return nameOfDay(dayNumber);
 	}
 	
+	
 	public String toString(){
 		return this.day + "/" + this.month + "/" + this.year;
 	}
 	
 	
+	
+	//Apartado randos days
+	
+	
+	public int numRandom(){
+        int  d, m, y;
+        int contador= 0;
+        
+        try{
+        	do{
+        		m = (int) (Math.random()*12) + 1;
+        		d = (int) (Math.random()*this.dayOfMonth(m)) + 1;
+        		y = this.year;
+        		contador++;
+        	} while ( !this.isSame(new Date(d,m,y) ) );
+		} catch (DateException){
+			System.out.println("ERROR");
+		}
+
+        return contador;
+    }
 }
