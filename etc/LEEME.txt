@@ -1,0 +1,12 @@
+Practica P-Date
+
+Alumno: Julio Machin Ruiz
+
+Horas dedicadas: 25h aproximadamente
+
+Problemas surgidos al realizar la practica:
+Problemas a la hora de hacer los ejercicios que tienen que ver con el calculo de dias y meses par acabar el año.
+Alguno problema a la hora de hacer la clase Exception
+
+Respuestas a la preguntas:
+
