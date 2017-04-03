@@ -56,7 +56,7 @@ public class Date {
 	public void setDay(int day) throws Date_Exception{
 		if(day <=0 ){
 			throw new Date_Exception("El nummero de dias no puede ser menor que 0" +month+ "\n");
-		}else if (!this.isDayRigth(day)){
+		}else if (!this.isDayRight(day)){
 			throw new Date_Exception("El numero del Mese no es correcto " +month+ "\n");
 		}else{
 			this.month = month;
@@ -215,6 +215,7 @@ public class Date {
 			name = null;
 			break;
 		}
+		return name;
 	}
 	
 	
@@ -293,6 +294,7 @@ public class Date {
 			name = null;
 			break;
 		}
+		return name;
 	}
 	
 	
@@ -308,13 +310,13 @@ public class Date {
 			int i = 0;
 			for(i = month; i <= 12; i++){
 				aux.setMonth(i);
-				monthLeft.append(aux.nameOfMonth + " ");
+				monthLeft.append(aux.nameOfMonth() + " ");
 			}
 		}catch (Date_Exception error){
 			System.out.println("ERROR");
 			
 		}
-		return monthLeft.toString;
+		return monthLeft.toString();
 	}
 	
 	
@@ -351,7 +353,7 @@ public class Date {
 			for( int i = 1; i <= 12; i++){
 				aux.setMonth(i);
 				if ( aux.dayOfMonth() == this.dayOfMonth()){
-					month.append(aux.nameOfMonth() + " ");
+					 monthSameDays.append(aux.monthSameDays() + " ");
 				}
 			}
 		}catch (Date_Exception error){
@@ -450,5 +452,7 @@ public class Date {
 		}
 
         return contador;
-    }
+    
+
+	}
 }
